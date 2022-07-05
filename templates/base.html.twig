@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    {% block title %}
+     <title>ACCUEIL</title>
+    {% endblock %}
+
+
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+</head>
+<body>
+{# des classes nommées pour mieux cibler pour le css #}
+<header class="header-top">
+    {# créer une liste pour la nav #}
+    <ul class="nav-items">
+        <li class="nav-item"><a class="nav-link" href="{{ path('home') }}">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ path('list_articles') }}">Articles</a></li>
+    </ul>
+</header>
+
+<main>
+    {# exo block afin de faciliter l'insertion des block d'une page & limiter les includes #}
+    {% block main %}
+    {% endblock %}
+
+</main>
+
+<footer>
+    {% block footer %}
+    <p>Je suis le footer, je fais du foot</p>
+    {% endblock footer %}
+</footer>
+
+</body>
+</html>
