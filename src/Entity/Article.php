@@ -3,13 +3,24 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Routing\Annotation\Route;
 
+//on créer une classe (car route est pour les controllers) et on se sert de l'ORM
+// pour que l'annotation soit prise en compte et création d'une entité => class entité
+// ORM = mapping objet-relationnel ; outil qui va permettre de se mettre
+// en interface entre le programme et la BDD
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
+
+//on créer une classe
 class Article
 {
+
+    //on créer les annotations pour
+    // definir ce qu'il va etre créé dans la BDD
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,6 +31,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
+    // type string = chaine de caractere
     private $title;
 
     /**
@@ -88,5 +100,48 @@ class Article
         $this->content = $content;
 
         return $this;
+    }
+
+
+    // Pour creer ta base de donnée dans le terminal
+    // php bin/console doctrine:database:create
+    // migration de fichier dans la BDD
+    // php bin/console make:migration
+    // l'envoyer et le comparer de la BDD précédente pour le prendre en compte
+    // php bin/console doctrine:migration:migrate
+
+
+    //php bin/console make:entity
+    //pour creer ta nvlle table directement
+
+
+    /**
+     * @Route("insert-article", name="insert-article")
+     */
+
+    public function insertArticle(EntityManagerInterface $entityManager){
+
+        // je créé la classe entité insertArticle de la classe Article (creation d'une instance de la classe)
+        // c'est pour creer un nouvel article (table article) de ma BDD
+
+        $article = new Article();
+
+        // utiliser les setters, les remplir ,titre, contenu , isPublished
+        // pour insérer les données pour le titre, le contenu etc etc
+
+        $article->setTitle("Chat");
+        $article->setContent("C'est un petit chat");
+        $article->setIsPublished(true);
+
+
+
+        // j'utilise la classe EntityManagerInterface de Doctrine pour
+        // enregistrer mon entité dans la bdd dans la table article (en
+        // deux étapes avec le persist puis le flush)
+        // ????????????????? HS 
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+        dump($article); die;
     }
 }
