@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Article {
 
     /**
-     * @ORM\Column("type=integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id()
-     * @ORM\GeneretedValue
+     * @ORM\GeneratedValue()
      */
 
     public $id;
