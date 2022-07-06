@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -109,6 +111,37 @@ class ArticleController extends AbstractController
         return $this->render('show_article.html.twig', [
             'article' => $article
         ]);
+    }
+
+    /**
+     * @Route("insert-article", name="insert-article")
+     */
+
+    public function insertArticle(EntityManagerInterface $entityManager){
+
+        // je créé la classe entité insertArticle de la classe Article (creation d'une instance de la classe)
+        // c'est pour creer un nouvel article (table article) de ma BDD
+
+        $article = new Article();
+
+        // utiliser les setters, les remplir ,titre, contenu , isPublished
+        // pour insérer les données pour le titre, le contenu etc etc
+
+        $article->setTitle("Chat");
+        $article->setContent("C'est un petit chat");
+        $article->setIsPublished(true);
+        $article->setAuthor("miaou");
+
+
+
+        // j'utilise la classe EntityManagerInterface de Doctrine pour
+        // enregistrer mon entité dans la bdd dans la table article (en
+        // deux étapes avec le persist puis le flush)
+        // ????????????????? HS
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+        dump($article); die;
     }
 
 }
