@@ -25,32 +25,27 @@ class Article {
      * @ORM\Id()
      * @ORM\GeneratedValue()
      */
-
     public $id;
 
     /**
      * @ORM\Column (type="string")
      */
-
     public $title;
+
     /**
      * @ORM\Column (type="string")
      */
-
     public $image;
-    /**
-     * @ORM\Column (type="string")
-     */
 
-    public $isPublished;
     /**
      * @ORM\Column (type="date")
      */
+    public $isPublished;
 
-    public $author;
     /**
      * @ORM\Column (type="string")
      */
+    public $author;
 
     // type string = chaine de caractere
 
@@ -58,5 +53,10 @@ class Article {
     // php bin/console doctrine:database:create
     // migration de fichier dans la BDD
     // php bin/console make:migration
+    // l'envoyer et le comparer de la BDD précédente pour le prendre en compte
+    // php bin/console doctrine:migration:migrate
 
+
+    //bin\console make:entity
+    //pour creer ta nvlle table directement
 }
