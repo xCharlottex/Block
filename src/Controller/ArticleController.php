@@ -119,7 +119,7 @@ class ArticleController extends AbstractController
 
     public function insertArticle(EntityManagerInterface $entityManager){
 
-        // je créé la classe entité insertArticle de la classe Article (creation d'une instance de la classe)
+        // je créé une instance de la classe article
         // c'est pour creer un nouvel article (table article) de ma BDD
 
         $article = new Article();
@@ -137,9 +137,11 @@ class ArticleController extends AbstractController
         // j'utilise la classe EntityManagerInterface de Doctrine pour
         // enregistrer mon entité dans la bdd dans la table article (en
         // deux étapes avec le persist puis le flush)
-        // ????????????????? HS
+        
 
+        // enregistrer le transmettre et traduire en SQL
         $entityManager->persist($article);
+        // l'envoyer dans la BDD
         $entityManager->flush();
         dump($article); die;
     }
