@@ -17,14 +17,18 @@ class CategoryController extends AbstractController {
 
     public function insertCategory(EntityManagerInterface $entityManager){
 
+        // création d'une instance de la classe article
         $category = new Category();
 
+        // se servir des setters et les remplir, insérer les données
         $category->setTitle("C'est l'histoire d'une orange");
         $category->setColor("Orange");
         $category->setIsPublished(true);
         $category->setDescription("Et j'en fais quoi ? du jus d'orange");
 
+        // enregistrer
         $entityManager->persist($category);
+        // envoyer dans la BDD
         $entityManager->flush();
         dump($category); die;
 
