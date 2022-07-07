@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,9 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("article", name="article")
+     * @Route("article/{id}", name="article")
      */
-    public function showArticle(ArticleRepository $articleRepository){
+    public function showArticle(ArticleRepository $articleRepository, $id){
 
         // recupérer depuis la base de donnée un article en fonction d'un ID
         // donc SELECT * FROM article where id = xxx
@@ -25,8 +24,12 @@ class ArticleController extends AbstractController
         // dans la table associé
         // la methode permet de recuperer un element par rapport a son id
 
-        $article = $articleRepository->find(2);
+        $article = $articleRepository->find($id);
         //dd($article);
+
+        return $this->render('show_article.html.twig', [
+           'article' => $article
+        ]);
     }
 
     /**
@@ -34,7 +37,11 @@ class ArticleController extends AbstractController
      */
     public function listArticles(ArticleRepository $articleRepository){
         $articles = $articleRepository->findAll();
-        dd($articles);
+        //dd($articles);
+
+        return $this->render(('list_articles.html.twig'), [
+            'articles' => $articles
+        ]);
     }
 
 
