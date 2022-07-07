@@ -12,25 +12,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController {
 
     /**
-     * @Route ("category", name="category")
-     */
-    public function showArticle(CategoryRepository $categoryRepository){
-        $category = $categoryRepository->find(1);
-        dd($category);
-    }
-
-    /**
      * @Route ("categories", name="categories")
      */
     public function showCategories(CategoryRepository $categoryRepository){
         $categories = $categoryRepository->findAll();
-        dd($categories);
+
+        return $this->render('categories.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
+    /**
+     * @Route ("categories/{id}", name="all_category")
+     */
+    public function showCategory($id, CategoryRepository $categoryRepository){
+        $category = $categoryRepository->find($id);
+
+        return $this->render('all_category.html.twig', [
+            'category' => $category
+        ]);
     }
 
 
     // on creer sa route + sa fonction let's go
     /**
-     * @Route("/category", name="category")
+     * @Route("/insert-category", name="insert_category")
      */
 
     public function insertCategory(EntityManagerInterface $entityManager){
