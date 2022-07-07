@@ -26,8 +26,10 @@ class ArticleController extends AbstractController
         // la methode permet de recuperer un element par rapport a son id
 
         $article = $articleRepository->find(2);
-        dd($article);
+        //dd($article);
     }
+
+
 
 
 

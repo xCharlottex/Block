@@ -3,12 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController {
+
+    /**
+     * @Route ("list", name="list")
+     */
+    public function showshowArticle(CategoryRepository $listRepository){
+        $list = $listRepository->find(1);
+        dd($list);
+    }
 
     // on creer sa route + sa fonction let's go
     /**
