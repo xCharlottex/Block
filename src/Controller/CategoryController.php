@@ -12,12 +12,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController {
 
     /**
-     * @Route ("list", name="list")
+     * @Route ("category", name="category")
      */
-    public function showshowArticle(CategoryRepository $listRepository){
-        $list = $listRepository->find(1);
-        dd($list);
+    public function showArticle(CategoryRepository $categoryRepository){
+        $category = $categoryRepository->find(1);
+        dd($category);
     }
+
+    /**
+     * @Route ("categories", name="categories")
+     */
+    public function showCategories(CategoryRepository $categoryRepository){
+        $categories = $categoryRepository->findAll();
+        dd($categories);
+    }
+
 
     // on creer sa route + sa fonction let's go
     /**
