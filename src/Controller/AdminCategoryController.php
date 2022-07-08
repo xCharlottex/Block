@@ -7,7 +7,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
-use http\Env\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -56,7 +56,9 @@ class AdminCategoryController extends AbstractController {
         $entityManager->persist($category);
         // envoyer dans la BDD
         $entityManager->flush();
-        dump($category); die;
+
+        $this->addFlash('sucess', 'Vous avez bien ajouté la categorie');
+        return new Response('ok');
 
     }
 
@@ -68,6 +70,8 @@ class AdminCategoryController extends AbstractController {
 
         $entityManager->remove($category);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Vous avez bien supprimé la categorie');
 
         return $this->redirectToRoute('admin_categories');
     }

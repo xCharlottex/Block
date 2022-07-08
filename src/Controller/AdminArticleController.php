@@ -182,6 +182,9 @@ class AdminArticleController extends AbstractController
         $entityManager->persist($article);
         // convertir, enregistrer, l'envoyer dans la BDD
         $entityManager->flush();
+
+        $this->addFlash('sucess', 'Vous avez bien ajouté l\'article');
+
         return $this->redirectToRoute('admin_articles');
     }
 
@@ -202,11 +205,11 @@ class AdminArticleController extends AbstractController
             $entityManager->flush();
 
             // retourner les messages suivant
-            return $this->redirectToRoute('admin_articles');
+            $this->addFlash('success', 'Vous avez bien supprimé l\'article');
         } else {
-            return $this->redirectToRoute('admin_articles');
+            $this->addFlash('error', 'Article introuvable');
         }
-
+        return $this->redirectToRoute('admin_articles');
     }
 
         // on inclu le update, à la suite du nom url de la route, puis l'id pour cibler un article
