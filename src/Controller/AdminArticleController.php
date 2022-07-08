@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Test\Constraint\ResponseCookieValueSame;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController extends AbstractController
+class AdminArticleController extends AbstractController
 {
     /**
      * @Route("/admin/article/{id}", name="admin_article")
@@ -30,7 +30,7 @@ class ArticleController extends AbstractController
         $article = $articleRepository->find($id);
         //dd($article);
 
-        return $this->render('show_article.html.twig', [
+        return $this->render('admin/show_article.html.twig', [
            'article' => $article
         ]);
     }
@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
         $articles = $articleRepository->findAll();
         //dd($articles);
 
-        return $this->render(('list_articles.html.twig'), [
+        return $this->render(('admin/list_articles.html.twig'), [
             'articles' => $articles
         ]);
     }

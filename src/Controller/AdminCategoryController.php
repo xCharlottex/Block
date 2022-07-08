@@ -9,26 +9,26 @@ use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategoryController extends AbstractController {
+class AdminCategoryController extends AbstractController {
 
     /**
-     * @Route ("categories", name="categories")
+     * @Route ("admin/categories", name="admin_categories")
      */
     public function showCategories(CategoryRepository $categoryRepository){
         $categories = $categoryRepository->findAll();
 
-        return $this->render('categories.html.twig', [
+        return $this->render('admin/categories.html.twig', [
             'categories' => $categories
         ]);
     }
 
     /**
-     * @Route ("categories/{id}", name="all_category")
+     * @Route ("admin/categories/{id}", name="admin_all_category")
      */
     public function showCategory($id, CategoryRepository $categoryRepository){
         $category = $categoryRepository->find($id);
 
-        return $this->render('all_category.html.twig', [
+        return $this->render('admin/all_category.html.twig', [
             'category' => $category
         ]);
     }
@@ -36,7 +36,7 @@ class CategoryController extends AbstractController {
 
     // on creer sa route + sa fonction let's go
     /**
-     * @Route("/insert-category", name="insert_category")
+     * @Route("/admin/insert-category", name="admin_insert_category")
      */
 
     public function insertCategory(EntityManagerInterface $entityManager){
