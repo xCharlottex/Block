@@ -6,8 +6,10 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Response;
+
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Test\Constraint\ResponseCookieValueSame;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
@@ -202,7 +204,27 @@ class ArticleController extends AbstractController
             // retourner les messages suivant
             return new Response('supp');
         } else {
-            return new Response('déja supp');
+            return new Response('deja supp');
         }
     }
+
+        // on inclu le update, à la suite du nom url de la route, puis l'id pour cibler un article
+    /**
+     * @Route("/articles/update/{id}", name="update_article")
+     */
+    // d'abord l'id () pour mettre la suite
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager) {
+
+        $article = $articleRepository->find($id);
+        // $article -> et non =
+        $article->setTitle('upadate article');
+
+        // persist puis flush 
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        // ne pas oublier le return new reponse !!
+        return new Response('c\'est ok' );
+    }
+
 }
