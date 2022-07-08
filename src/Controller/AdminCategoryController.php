@@ -7,6 +7,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
+use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -69,5 +70,19 @@ class AdminCategoryController extends AbstractController {
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_categories');
+    }
+
+    /**
+     * @Route("admin/categories/update/{id}", name="admin_update_category")
+     */
+    public function updateCategory($id, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager){
+        $category = $categoryRepository->find($id);
+
+        $category->setTitle('update category');
+
+        $entityManager->persist($category);
+        $entityManager->flush();
+
+        return new Response('okay');
     }
 }

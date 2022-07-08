@@ -42,7 +42,7 @@ class AdminArticleController extends AbstractController
         $articles = $articleRepository->findAll();
         //dd($articles);
 
-        return $this->render(('admin/categories.html.twig'), [
+        return $this->render(('admin/list_articles.html.twig'), [
             'articles' => $articles
         ]);
     }
@@ -182,7 +182,7 @@ class AdminArticleController extends AbstractController
         $entityManager->persist($article);
         // convertir, enregistrer, l'envoyer dans la BDD
         $entityManager->flush();
-        dump($article); die;
+        return $this->redirectToRoute('admin_articles');
     }
 
     /**
