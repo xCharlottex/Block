@@ -42,7 +42,7 @@ class AdminArticleController extends AbstractController
         $articles = $articleRepository->findAll();
         //dd($articles);
 
-        return $this->render(('admin/list_articles.html.twig'), [
+        return $this->render(('admin/categories.html.twig'), [
             'articles' => $articles
         ]);
     }
@@ -202,10 +202,11 @@ class AdminArticleController extends AbstractController
             $entityManager->flush();
 
             // retourner les messages suivant
-            return new Response('supp');
+            return $this->redirectToRoute('admin_articles');
         } else {
-            return new Response('deja supp');
+            return $this->redirectToRoute('admin_articles');
         }
+
     }
 
         // on inclu le update, à la suite du nom url de la route, puis l'id pour cibler un article

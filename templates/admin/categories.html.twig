@@ -5,7 +5,9 @@
     {% for category in categories %}
         <article>
             <h2 style="color: {{ category.color }};">{{ category.title }}</h2>
-            <a href="{{ path('admin_all_category', {'id': category.id}) }}">Les différents fruits</a>
+            <a href="{{ path('admin_all_category', {'id': category.id}) }}">clique pour ce fruit</a>
+            <a href="{{ path('admin_categories', {'id': category.id}) }}">Voici la liste</a>
+            <a href="{{ path('admin_delete_category', {'id': category.id}) }}">Pour supprimer c'est ici !</a>
         </article>
     {% endfor %}
 

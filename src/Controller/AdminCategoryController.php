@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,5 +57,17 @@ class AdminCategoryController extends AbstractController {
         $entityManager->flush();
         dump($category); die;
 
+    }
+
+    /**
+     * @Route("/admin/category/delete/{id}", name="admin_delete_category")
+     */
+    public function deleteCategory($id, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager) {
+        $category = $categoryRepository->find($id);
+
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_categories');
     }
 }
