@@ -17,7 +17,7 @@
                     {# <img class="article-img" src="{{ article.image }}" alt="{{ article.title }}"> #}
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.author }}</p>
-                    <a href="{{ path('article', {'id': article.id }) }}">Clique j't'ai dit</a>
+                    <a href="{{ path('admin_article', {'id': article.id }) }}">Clique j't'ai dit</a>
                 </article>
             {% endif %}
 

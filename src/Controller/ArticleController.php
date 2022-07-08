@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("article/{id}", name="article")
+     * @Route("/admin/article/{id}", name="admin_article")
      */
     public function showArticle(ArticleRepository $articleRepository, $id){
 
@@ -36,7 +36,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("articles", name="articles")
+     * @Route("/admin/articles", name="admin_articles")
      */
     public function listArticles(ArticleRepository $articleRepository){
         $articles = $articleRepository->findAll();
@@ -153,7 +153,7 @@ class ArticleController extends AbstractController
 //    }
 
     /**
-     * @Route("insert-article", name="insert-article")
+     * @Route("/admin/insert-article", name="admin_insert-article")
      */
 
     public function insertArticle(EntityManagerInterface $entityManager){
@@ -186,7 +186,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/articles/delete/{id}", name="delete_article")
+     * @Route("/admin/articles/delete/{id}", name="admin_delete_article")
      */
     public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager){
 
@@ -210,20 +210,20 @@ class ArticleController extends AbstractController
 
         // on inclu le update, à la suite du nom url de la route, puis l'id pour cibler un article
     /**
-     * @Route("/articles/update/{id}", name="update_article")
+     * @Route("admin/articles/update/{id}", name="admin_update_article")
      */
     // d'abord l'id () pour mettre la suite
     public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager) {
 
         $article = $articleRepository->find($id);
         // $article -> et non =
-        $article->setTitle('upadate article');
+        $article->setTitle('update article');
 
-        // persist puis flush 
+        // persist puis flush
         $entityManager->persist($article);
         $entityManager->flush();
 
-        // ne pas oublier le return new reponse !!
+        // ne pas oublier le return new response !!
         return new Response('c\'est ok' );
     }
 
