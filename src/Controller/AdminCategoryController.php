@@ -101,42 +101,48 @@ class AdminCategoryController extends AbstractController
     }
 
 
-
+    // création de la route du nom de son url + son nom pour faire appel
     /**
      * @Route ("/admin/categories_insert", name="admin_insert_categories")
      */
+    // craétion d'une methode + nom de la variable, création de l'instance + de la requete
     public function insertCategories(EntityManagerInterface $entityManager, Request $request)
     {
+        // création d'une variable, appel a la classe request et fonction query + get
         $title= $request->query->get('title');
         $color= $request->query->get('color');
         $description = $request->query->get('description');
 
-        // si le form a été envoyé //
+        // si le form a été envoyé , englober les conditions de formulaire
         if ($request->query->has('title') && $request->query->has('color') && $request->query->has('description')) {
 
+            // si il y a présence d'un titre+couleur+description on execute
             if (!empty($title)&& !empty($color)&& !empty($description)) {
 
+                // informer la BDD que les requetes vont etre intégré a cette table
+                // instance de classe
                 $category = new Category();
 
+                // utiliser + remplir les setters pour insérer les données
                 $category->setTitle($title);
                 $category->setColor($color);
                 $category->setDescription($description);
                 $category->setisPublished('true');
 
                 $entityManager->persist($category);
-                // envoyer dans la BDD
+                // convertir + enregister, envoyer dans la BDD
                 $entityManager->flush();
-
+                // message flash
                 $this->addFlash("success","Vous avez réussi");
-
+                // route redirigé sur l'accueil des catégories
                 return $this->redirectToRoute("admin_categories");
             } else {
                 $this->addFlash("error","eh non ..");
             }
         }
-
+        // la route mene vers ce lien twig ( mon formulaire)
         return $this->render('admin/formulaire_category.html.twig');
 
     }
-
+        // ALOOOOOOOOORS ? les mains en l'air pour de bon commentaires 
 }
