@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <a class="ajoute" href="{{ path('admin_insert_categories') }}">Ajoutez une catégorie !</a>
+    <a class="ajoute" href="{{ path('admin_insert_category') }}">Ajoutez une catégorie !</a>
 
     {% for category in categories %}
         <article class="les_articles">
