@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    <a href="{{ path('admin_insert_categories') }}">Ajoutez une catégorie !</a>
 
     {% for category in categories %}
         <article>

@@ -188,6 +188,10 @@ class AdminArticleController extends AbstractController
         return $this->redirectToRoute('admin_articles');
     }
 
+
+
+
+
     /**
      * @Route("/admin/articles/delete/{id}", name="admin_delete_article")
      */
@@ -229,6 +233,17 @@ class AdminArticleController extends AbstractController
 
         // ne pas oublier le return new response !!
         return new Response('c\'est ok' );
+    }
+
+    /**
+     * @Route ("/admin/articles_insert", name="admin_insert_article")
+     */
+    public function insertArticlee(EntityManagerInterface $entityManager )
+    {
+        $article = new Article();
+
+        $article->setTitle("");
+        $article->setColor("blue");
     }
 
 }
