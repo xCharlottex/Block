@@ -20,11 +20,12 @@
                     {% if article.category %}
                         <p>{{ article.category.title }}</p>
                         {% else %}
-                        <p>Aucunes catégories</p>
+                        <p class="categorie_">Aucune catégorie</p>
                     {% endif %}
                     <p>{{ article.author }}</p>
                     <a class="clique" href="{{ path('admin_article', {'id': article.id }) }}">Clique j't'ai dit</a>
                     <a class="clique" href="{{ path('admin_update_article', {'id': article.id }) }}">Modifier l'article</a>
+                    <a class="clique" href="{{ path('admin_delete_article', {'id': article.id }) }}">Supprimer l'article</a>
 
                 </article>
             {% endif %}
