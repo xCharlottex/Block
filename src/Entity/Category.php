@@ -22,6 +22,20 @@ class Category
      */
     private $title;
 
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
+    }
+
     /**
      * @ORM\Column(type="string", length=255)
      */

@@ -16,6 +16,12 @@
                 <article class="article">
                     {# <img class="article-img" src="{{ article.image }}" alt="{{ article.title }}"> #}
                     <h1>{{ article.title }}</h1>
+
+                    {% if article.category %}
+                        <p>{{ article.category.title }}</p>
+                        {% else %}
+                        <p>Aucunes catégories</p>
+                    {% endif %}
                     <p>{{ article.author }}</p>
                     <a class="clique" href="{{ path('admin_article', {'id': article.id }) }}">Clique j't'ai dit</a>
                     <a class="clique" href="{{ path('admin_update_article', {'id': article.id }) }}">Modifier l'article</a>
