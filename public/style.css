@@ -1,7 +1,7 @@
 
 
 * {
-    background-color: #FFD6FF;
+    background-color: #F5E0FF;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,7 +23,7 @@
 .nav-link {
     padding: 0px;
     background-color: white;
-    color: #D1BDFF;
+    color: #99A76A;
 }
 
 .articles {
@@ -45,7 +45,7 @@
     margin-right: 20px;
     margin-left: 20px;
     list-style-type: none;
-    color: #C68AFF;
+    color: #99A76A;
 }
 
 .message-success {
@@ -72,9 +72,9 @@
 }
 
 .categorie_{
-    color: #C68AFF;
+    color: #E3BFF5;
 }
 
 .clique {
-    color: #FFBDB1;
+    color: #9772A8;
 }

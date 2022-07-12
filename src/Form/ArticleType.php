@@ -21,7 +21,7 @@ class ArticleType extends AbstractType
             // ajouter le champs category pour gerer la selection d'une categorie pour l'article
                 // mettre le type "EntityType" car relation vers une entité
                 // parametrer mon input pour qu'il affiche toutes les categories
-                // de la BDD avec leur titre dans les options du select 
+                // de la BDD avec leur titre dans les options du select
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label'=> 'title'
