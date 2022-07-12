@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,9 +36,29 @@ class Article
     private $title;
 
     /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles): void
+    {
+        $this->articles = $articles;
+    }
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category")
      */
     private $category;
+
+    public function __construct(){
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -70,6 +91,13 @@ class Article
      * @ORM\Column(type="string", length=255)
      */
     private $content;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
+     */
+    private $articles;
+
+
 
     public function getId(): ?int
     {

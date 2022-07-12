@@ -2,7 +2,34 @@
 
 {% block main %}
 
-    {{ form(form) }}
-    <button>Envoyer</button>
+    {# utiliser la fonction twig form et je lui passe la variable
+    qui contient mon formulaire depuis le controleur
+    ca permet de generer tous les inputs + labels de mon formulaire#}
+
+  {# {{ form(form) }} #}
+
+    {{ form_start(form) }}
+<div class="container">
+    <div class="row col-6">
+        {{ form_label(form.title, 'Titre', {'label_attr':{'class' : 'form-article-title-label'}}) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-article-title-widget'}}) }}
+    </div>
+    <div class="row col-6">
+        {{ form_label(form.color, 'color', {'label_attr':{'class' : 'form-article-title-label'}}) }}
+        {{ form_widget(form.color, {'attr' : {'class': 'form-article-title-widget'}}) }}
+    </div>
+    <div class="row col-6">
+        {{ form_label(form.description, 'description', {'label_attr':{'class' : 'form-article-title-label'}}) }}
+        {{ form_widget(form.description, {'attr' : {'class': 'form-article-title-widget'}}) }}
+    </div>
+    <div class="row col-6">
+        {{ form_label(form.isPublished, 'isPublished', {'label_attr':{'class' : 'form-article-title-label'}}) }}
+        {{ form_widget(form.isPublished, {'attr' : {'class': 'form-article-title-widget'}}) }}
+    </div>
+    <div class="row col-4">
+        {{ form_widget(form.submit) }}
+    </div>
+</div>
+{{ form_end(form) }}
 
 {% endblock %}
