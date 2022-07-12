@@ -9,6 +9,7 @@
             <a href="{{ path('admin_all_category', {'id': category.id}) }}">clique pour ce fruit</a>
             <a href="{{ path('admin_categories', {'id': category.id}) }}">Voici la liste</a>
             <a href="{{ path('admin_delete_category', {'id': category.id}) }}">Pour supprimer c'est ici !</a>
+            <a href="{{ path('admin_update_category', {'id': category.id}) }}">Modifier la category</a>
         </article>
     {% endfor %}
 

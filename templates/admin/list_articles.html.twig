@@ -18,6 +18,8 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.author }}</p>
                     <a class="clique" href="{{ path('admin_article', {'id': article.id }) }}">Clique j't'ai dit</a>
+                    <a class="clique" href="{{ path('admin_update_article', {'id': article.id }) }}">Modifier l'article</a>
+
                 </article>
             {% endif %}
 

@@ -221,18 +221,24 @@ class AdminArticleController extends AbstractController
      * @Route("admin/articles/update/{id}", name="admin_update_article")
      */
     // d'abord l'id () pour mettre la suite
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager) {
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request)
+    {
 
         $article = $articleRepository->find($id);
         // $article -> et non =
         $article->setTitle('update article');
 
-        // persist puis flush
-        $entityManager->persist($article);
-        $entityManager->flush();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // persist puis flush
+            $entityManager->persist($article);
+            $entityManager->flush();
 
-        // ne pas oublier le return new response !!
-        return new Response('c\'est ok' );
+            $this->addFlash('success', 'Article enregistré');
+
+        }
+        return $this->render('admin/update_article.html.twig', [ 'form'=>$form->createView()]);
     }
 
     /**
