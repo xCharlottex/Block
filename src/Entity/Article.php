@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints as Assert;
 
 //on créer une classe (car route est pour les controllers) et on se sert de l'ORM
 // pour que l'annotation soit prise en compte et création d'une entité => class entité
@@ -31,6 +32,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="remplissez le titre")
      */
     // type string = chaine de caractere
     private $title;

@@ -9,19 +9,21 @@
 
 .header-top {
     background-size: cover;
-    height: 50px;
 
 }
 .nav-items {
+
     display: flex;
     justify-content: space-around;
     align-items: center;
     list-style-type: none;
     background-color: white;
+    margin-bottom: 2rem;
 }
 
+
 .nav-link {
-    padding: 0px;
+
     background-color: white;
     color: #99A76A;
 }
@@ -30,6 +32,7 @@
     display: flex;
     justify-content: space-around;
     list-style-type: none;
+    margin-top: 2rem;
 }
 
 .list_articles {

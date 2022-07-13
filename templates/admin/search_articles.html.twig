@@ -13,11 +13,19 @@
                 {% else %}
                     <p>Pas de catégorie</p>
                 {% endif %}
-                <a href="{{ path('admin_article', {'id': article.id}) }}">Voir cet article</a>
-                <a href="{{ path('admin_update_article', {'id': article }) }}">Modifier cet article</a>
+                <a href="{{ path('admin_article', {'id':article.id}) }}">Voir cet article</a>
+                <a href="{{ path('admin_update_article', {'id':article.id }) }}">Modifier cet article</a>
                 <a href="{{ path('admin_delete_article', {'id':article.id }) }}">Supprimer cet article</a>
             </article>
 
         {% endfor %}
+    <section class="category">
+
+        {% for category in categories %}
+
+            <article class="article">
+                <h1>{{ category.title }}</h1>
+            </article>
     </section>
+    {% endfor %}
 {% endblock %}
