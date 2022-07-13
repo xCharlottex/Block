@@ -38,31 +38,21 @@ class Category
     {
         $this->articles = $articles;
     }
+    // créer une clé étrangere et cree la relation d'un article relié  a une catégorie
 
-    //on veut pouvoir recuperer avec une categorie, tous les articles qui lui sont liés(qui possede l'id de la categorie)
     /**
      * @ORM\OneToMany (targetEntity="App\Entity\Article", mappedBy="category")
      */
     private $articles;
 
-    // s'execute avant ton code , pour instantier un objet par ex qui correspond a la variable article
+    // code qui s'execute des que la classe actuelle est instancier
     public function __construct(){
         $this->articles = new ArrayCollection();
     }
 
 
-    public function getCategory()
-    {
-        return $this->category;
-    }
 
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category): void
-    {
-        $this->category = $category;
-    }
+
 
     /**
      * @ORM\Column(type="string", length=255)

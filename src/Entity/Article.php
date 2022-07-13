@@ -35,30 +35,13 @@ class Article
     // type string = chaine de caractere
     private $title;
 
-    /**
-     * @return mixed
-     */
-    public function getArticles()
-    {
-        return $this->articles;
-    }
 
-    /**
-     * @param mixed $articles
-     */
-    public function setArticles($articles): void
-    {
-        $this->articles = $articles;
-    }
 //on veut pouvoir recuperer avec une categorie, tous les articles qui lui sont liés(qui possede l'id de la categorie)
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      */
     private $category;
-// s'execute avant ton code , pour instantier un objet par ex qui correspond a la variable article
-    public function __construct(){
-        $this->articles = new ArrayCollection();
-    }
+
 
     /**
      * @return mixed
@@ -92,10 +75,6 @@ class Article
      */
     private $content;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
-     */
-    private $articles;
 
 
 
