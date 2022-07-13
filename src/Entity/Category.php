@@ -39,11 +39,13 @@ class Category
         $this->articles = $articles;
     }
 
+    //on veut pouvoir recuperer avec une categorie, tous les articles qui lui sont liés(qui possede l'id de la categorie)
     /**
      * @ORM\OneToMany (targetEntity="App\Entity\Article", mappedBy="category")
      */
     private $articles;
 
+    // s'execute avant ton code , pour instantier un objet par ex qui correspond a la variable article
     public function __construct(){
         $this->articles = new ArrayCollection();
     }
