@@ -280,7 +280,28 @@ class AdminArticleController extends AbstractController
 
     }
 
+// appeler la methode dans le contenu de controleur pour recuperer les articles
 
+
+    /**
+     * @Route("/admin/articles/search", name="admin_search_articles")
+     */
+    public function searchArticles(Request $request, ArticleRepository $articleRepository){
+
+        // recuperer les valeurs du formulaire dans ma route
+        $search = $request->query->get('search');
+
+        // creer une methode dans l'ArticleRepository
+        // qui trouve un article en fonction d'un mot dans son titre ou son contenu
+        $articles = $articleRepository->searchByWord($search);
+
+        // renvoyer un fichier twig en lui passant les articles trouvé
+        // et je les affiche
+
+        return $this->render('admin/search_articles.html.twig', [
+            'articles' => $articles
+        ]);
+    }
 
 
 }
